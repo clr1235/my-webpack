@@ -4,3 +4,9 @@
 2. 安装webpack ```npm i webpack webpack-cli --save-dev```
 3. 创建webpack.config.js文件
 4. 牛刀小试 在package.json文件的scripts下配置 build打包命令
+## 安装需要用到的包
+注意：loader是链式调用，执行顺序是从右到左
+1. 解析es6 ```npm i @babel/core @babel/preset-env babel-loader -D``` -D是 --save-dev的缩写
+2. 创建.babelrc文件
+3. 解析react jsx语法 ```npm i @babel/preset-react -D```
+4. 解析css ```npm i css-loader style-loader -D```
