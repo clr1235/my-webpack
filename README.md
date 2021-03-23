@@ -16,3 +16,11 @@
 ## 配置热更新
 1. 可以配置启动命令```webpack-dev-server --open``` --open表示每次更新完成会自动打开浏览器, 需要搭配webpack.HotModuleReplacementPlugin插件
 2. 多页应用打包方案 使用 ```npm i glob -D ```
+
+## 优化构建日志
+1. stats 设置成 errors-only
+2. ```npm i friendly-errors-webpack-plugin -D```进行命令行构建日志的优化
+
+
+
+## 配置通用的webpack
