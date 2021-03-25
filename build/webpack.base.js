@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // 清理构建目录
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// webpack5.0 自动会调用此插件 导致默认生成.LICENSE.txt后缀的文件
 const TerserPlugin = require('terser-webpack-plugin')
 
 
@@ -72,23 +73,40 @@ module.exports = {
             use: [
                 MiniCssExtractPlugin.loader,
                 'css-loader',
-                'less-loader',
                 {
-                    loader: 'postcss-laoder',
+                    loader: 'postcss-loader',
                     options: {
-                        plugins: () => {
-                            autoprefixer({
-                                browsers: ['last 2 version', '>1%', 'ios 7'],
-                            })
-                        }
+                        postcssOptions: {
+                            plugins: [
+                                ["postcss-preset-env"]
+                            ]
+                        },
                     }
-                } 
+                },
+                'less-loader', 
             ]
+        // }, {
+        //     test: /.s(a|c)ss$/,
+        //     use: [
+        //         MiniCssExtractPlugin.loader,
+        //         'css-loader',
+        //         {
+        //             loader: 'postcss-loader',
+        //             options: {
+        //                 postcssOptions: {
+        //                     plugins: [
+        //                         ["postcss-preset-env"]
+        //                     ]
+        //                 },
+        //             }
+        //         },
+        //         'sass-loader',
+        //     ]
         }]
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '[name]_[contenthash:8].css',
+            filename: '[name]/[name]_[contenthash:8].css',
         }),
         new CleanWebpackPlugin()
     ].concat(htmlWebpackPlugins),
