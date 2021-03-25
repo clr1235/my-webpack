@@ -26,7 +26,9 @@ const configEntry = () => {
         // 配置对应的自动生成html
         htmlWebpackPlugins.push(
             new HtmlWebpackPlugin({
-                // 会将默认生成的index.html放到 对应的出口目录下
+                // 使用自定义模版
+                template: path.join(projectRoot, `src/${pageName}/template.html`),
+                // 会将默认我们自定义的模版插入打包的css和js,重命名为index.html 并将其放到对应的出口目录下
                 filename: `${pageName}/index.html`,
                 chunks: [pageName],
                 inject: true,
@@ -86,7 +88,7 @@ module.exports = {
                 'less-loader', 
             ]
         // }, {
-        //     test: /.s(a|c)ss$/,
+        //     test: /.s[ac]ss$/i,
         //     use: [
         //         MiniCssExtractPlugin.loader,
         //         'css-loader',

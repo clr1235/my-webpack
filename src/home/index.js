@@ -8,7 +8,7 @@ configure({
 
 ReactDOM.render(
     <div>home</div>,
-    document.getElementById("home")
+    document.getElementById("root")
 );
 
 
