@@ -6,6 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // 清理构建目录
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin')
+
 
 // 配置通用的多页面应用入口，以及自动生成相应的html页面
 // process.cwd()方法会返回 Node.js 进程的当前工作目录
@@ -13,7 +15,7 @@ const projectRoot = process.cwd()
 const configEntry = () => {
     const entry = {}
     const htmlWebpackPlugins = []
-    const entryFiles = glob.sync(path.join(projectRoot, '.src/*/index.js'))
+    const entryFiles = glob.sync(path.join(projectRoot, 'src/*/index.js'))
     Object.keys(entryFiles).forEach((index) => {
         // 配置入口
         const entryFile = entryFiles[index]
@@ -23,10 +25,9 @@ const configEntry = () => {
         // 配置对应的自动生成html
         htmlWebpackPlugins.push(
             new HtmlWebpackPlugin({
-                inlineSource: '.css$',
-                template: path.join(projectRoot, `./src/${pageName}/index.html`),
-                filename: `${pageName}.html`,
-                chunks: ['vendors', pageName],
+                // 会将默认生成的index.html放到 对应的出口目录下
+                filename: `${pageName}/index.html`,
+                chunks: [pageName],
                 inject: true,
                 minify: {
                     html5: true,
@@ -53,14 +54,15 @@ module.exports = {
     // 出口
     output: {
         // 输出文件的路径
-        path: path.join(projectRoot, 'dist'),
-        // 输出的文件名
-        filename: '[name]_[chunkhash:8].js'
+        path: path.join(projectRoot, `dist`),
+        // 会将打包文件分别放到name目录下
+        filename: '[name]/[chunkhash:8].js'
     },
     // loaders
     module: {
         rules: [{
-            test: /.js$/,
+            test: /.js|jsx$/,
+            exclude: /node_modules/,
             use: 'babel-loader'
         }, {
             test: /.css$/,
@@ -90,5 +92,18 @@ module.exports = {
         }),
         new CleanWebpackPlugin()
     ].concat(htmlWebpackPlugins),
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                extractComments: false
+            })
+        ]
+    },
     stats: 'errors-only'
 }
+
+
+
+
+
+
