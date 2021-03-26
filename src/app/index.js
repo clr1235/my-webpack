@@ -3,9 +3,7 @@ import ReactDOM from "react-dom";
 
 import './index.less'
 
-configure({
-  enforceActions: "observed"
-});
+jdj
 
 ReactDOM.render(
     <div>app页面</div>,

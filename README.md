@@ -46,3 +46,4 @@
 
 
 ## 配置通用的webpack
+1. webpack5.0 在使用webpack-dev-server插件配置启动命令时  需要写成 ```webpack serve```

@@ -27,7 +27,7 @@ const configEntry = () => {
         htmlWebpackPlugins.push(
             new HtmlWebpackPlugin({
                 // 使用自定义模版
-                template: path.join(projectRoot, `src/${pageName}/template.html`),
+                template: path.join(projectRoot, `src/${pageName}/index.html`),
                 // 会将默认我们自定义的模版插入打包的css和js,重命名为index.html 并将其放到对应的出口目录下
                 filename: `${pageName}/index.html`,
                 chunks: [pageName],
@@ -68,8 +68,21 @@ module.exports = {
             exclude: /node_modules/,
             use: 'babel-loader'
         }, {
-            test: /.css$/,
-            use: [MiniCssExtractPlugin.loader, 'css-loader']
+            test: /.css$/i,
+            use: [
+                MiniCssExtractPlugin.loader, 
+                'css-loader',
+                {
+                    loader: 'postcss-loader',
+                    options: {
+                        postcssOptions: {
+                            plugins: [
+                                ["postcss-preset-env"]
+                            ]
+                        },
+                    }
+                },
+            ]
         }, {
             test: /.less$/,
             use: [
@@ -87,23 +100,6 @@ module.exports = {
                 },
                 'less-loader', 
             ]
-        // }, {
-        //     test: /.s[ac]ss$/i,
-        //     use: [
-        //         MiniCssExtractPlugin.loader,
-        //         'css-loader',
-        //         {
-        //             loader: 'postcss-loader',
-        //             options: {
-        //                 postcssOptions: {
-        //                     plugins: [
-        //                         ["postcss-preset-env"]
-        //                     ]
-        //                 },
-        //             }
-        //         },
-        //         'sass-loader',
-        //     ]
         }]
     },
     plugins: [

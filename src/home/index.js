@@ -1,10 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import './index.scss'
-configure({
-  enforceActions: "observed"
-});
+import './index.less'
 
 ReactDOM.render(
     <div>home</div>,
