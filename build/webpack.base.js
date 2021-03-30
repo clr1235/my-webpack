@@ -59,7 +59,7 @@ module.exports = {
         // 输出文件的路径
         path: path.join(projectRoot, `dist`),
         // 会将打包文件分别放到name目录下
-        filename: '[name]/[chunkhash:8].js'
+        filename: '[name]/js/[chunkhash:8].js'
     },
     // loaders
     module: {
@@ -100,11 +100,21 @@ module.exports = {
                 },
                 'less-loader', 
             ]
+        }, {
+            test: /\.(png|jpg|jpeg|gif)$/i,
+            use: [{
+                loader: 'url-loader',
+                options: {
+                    limit: false,
+                    name: '[name]_[contenthash:8].[ext]',
+                    outputPath: './assets/img'
+                }
+            }]
         }]
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '[name]/[name]_[contenthash:8].css',
+            filename: '[name]/css/[name]_[contenthash:8].css',
         }),
         new CleanWebpackPlugin()
     ].concat(htmlWebpackPlugins),
