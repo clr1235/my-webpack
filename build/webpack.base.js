@@ -110,6 +110,15 @@ module.exports = {
                     outputPath: './assets/img'
                 }
             }]
+        }, {
+            test: /\.(woff|woff2|eot|otf)$/,
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    name: '[name]_[hash:8].[ext]',
+                    outputPath: './assets/fonts'
+                }
+            }]
         }]
     },
     plugins: [
@@ -125,7 +134,7 @@ module.exports = {
             })
         ]
     },
-    stats: 'errors-only'
+    // stats: 'errors-only'
 }
 
 

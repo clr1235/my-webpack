@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import './index.less'
-import codeJpg from './img/code.jpg'
+import codeJpg from '../assets/img/code.jpg'
 
 ReactDOM.render(
     <div>app页面
