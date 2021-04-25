@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config build/webpack.base.js",
-    "dev": "webpack serve --config build/webpack.dev.js --open"
+    "dev": "webpack serve --config build/webpack.dev.js --open",
+    "prod": "webpack serve --config build/webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -41,7 +42,8 @@
     "webpack": "^5.26.3",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2",
-    "webpack-merge": "^5.7.3"
+    "webpack-merge": "^5.7.3",
+    "webpackbar": "^5.0.0-3"
   },
   "dependencies": {
     "react": "^17.0.1",
