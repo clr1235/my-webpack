@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config build/webpack.base.js",
+    "build:stats": "webpack --config build/webpack.prod.js --json > stats.json",
     "dev": "webpack serve --config build/webpack.dev.js --open && eslint --fix",
     "prod": "webpack --config build/webpack.prod.js",
     "eslint": "eslint --fix"
