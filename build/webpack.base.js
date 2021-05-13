@@ -1,7 +1,5 @@
 const path = require('path')
 const glob = require('glob');
-// webpack打包进度条
-const WebpackBar = require('webpackbar');
 // 自动生成html
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 抽取css文件
@@ -32,7 +30,7 @@ const configEntry = () => {
                 template: path.join(projectRoot, `src/${pageName}/index.html`),
                 // 会将默认我们自定义的模版插入打包的css和js,重命名为index.html 并将其放到对应的出口目录下
                 filename: `${pageName}/index.html`,
-                chunks: [pageName, "prod", "commons", "vendors", "common"],
+                chunks: [pageName, "commons", "vendors", "common"],
                 inject: true,
                 minify: {
                     html5: true,
@@ -124,7 +122,6 @@ module.exports = {
         }]
     },
     plugins: [
-        new WebpackBar(),
         new MiniCssExtractPlugin({
             filename: '[name]/css/[name]_[contenthash:8].css',
         }),
