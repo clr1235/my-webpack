@@ -1,5 +1,7 @@
 const path = require('path')
 const glob = require('glob');
+// 分析打包体积
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // 自动生成html
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 抽取css文件
@@ -125,7 +127,9 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name]/css/[name]_[contenthash:8].css',
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        // 开启 BundleAnalyzerPlugin 
+        // new BundleAnalyzerPlugin(), 
     ].concat(htmlWebpackPlugins),
     optimization: {
         minimizer: [
