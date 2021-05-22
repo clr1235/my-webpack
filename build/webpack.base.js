@@ -68,7 +68,7 @@ module.exports = {
         rules: [{
             test: /.js|jsx$/,
             exclude: /node_modules/,
-            use: 'babel-loader'
+            use: 'babel-loader?cacheDirectory=true'
         }, {
             test: /.css$/i,
             use: [
@@ -134,7 +134,8 @@ module.exports = {
     optimization: {
         minimizer: [
             new TerserPlugin({
-                extractComments: false
+                extractComments: false,
+                parallel: true, // 使用多进程并发构建，默认是true
             })
         ]
     },
