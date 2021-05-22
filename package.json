@@ -9,7 +9,8 @@
     "build:stats": "webpack --config build/webpack.prod.js --json > stats.json",
     "dev": "webpack serve --config build/webpack.dev.js --open && eslint --fix",
     "prod": "webpack --config build/webpack.prod.js",
-    "eslint": "eslint --fix"
+    "eslint": "eslint --fix",
+    "dll": "webpack --config build/webpack.dll.js"
   },
   "repository": {
     "type": "git",

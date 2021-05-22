@@ -65,6 +65,11 @@ const prodConfig = {
             }),
         ]
     },
+    plugins: [
+        new webpack.DllReferencePlugin({
+            manifest: require('./library/library.manifest.json')
+        })
+    ],
     //添加 stats 配置过滤打包时出现的一些统计信息。
     stats: {
         modules: false,
@@ -72,8 +77,6 @@ const prodConfig = {
         chunks: false,
         chunkModules: false
     },
-    
-
 }
 
 module.exports = merge(baseConfig, prodConfig)
