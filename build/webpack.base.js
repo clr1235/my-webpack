@@ -63,6 +63,14 @@ module.exports = {
         // 会将打包文件分别放到name目录下
         filename: '[name]/js/[chunkhash:8].js'
     },
+    resolve: {
+        extensions: ['.js', '.jsx', '.json'],
+        alias: {
+            
+        },
+        // 解析目录时要使用的文件名
+        mainFiles: ['index'], 
+    },
     // loaders
     module: {
         rules: [{
